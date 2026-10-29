@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1B2026">
+<meta property="og:title" content="Es hora de mirar tu piel · Noviembre a Motas 2026">
+<meta property="og:description" content="Control gratuito de lunares con dermatólogos de la SPD, del 5 al 27 de noviembre.">
+<meta property="og:image" content="/img/hero-hombro.jpg">
+<title>Es hora de mirar tu piel</title>
+
+<meta name="description" content="Noviembre a Motas 2026: control gratuito de lunares en 10 instituciones del país, el ABCDE para revisar tus lunares y el sorteo de la campaña.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800&display=swap">
+<style>
+/* Layout: "Observación lenta". Bandas de campaña (degradé pizarra) al inicio y en el sorteo;
+   cuerpo como lámina clínica: campo frío, etiquetas en mono, una sola señal cálida (el lunar).
+   Orden por importancia: dónde me atiendo → cómo me reviso → sorteo → qué es el cáncer de piel. */
+:root{
+  /* superficies */
+  --bg:#E9ECEF; --surface:#FFFFFF; --sunken:#E9ECEF; --line:#CBD3DB;
+  /* texto */
+  --text:#15191D; --muted:#4A5562;            /* 6.4:1 sobre --bg */
+  /* interacción: un solo color, solo para lo que se toca */
+  --link:#46607A;                              /* 5.5:1 sobre --bg, 6.5:1 sobre blanco */
+  --solid:#15191D; --on-solid:#FFFFFF;
+  /* banda de campaña: igual en ambos temas */
+  --brand-a:#1B2026; --brand-b:#4C5F72; --on-brand:#FFFFFF; --on-brand-2:#DCE3EA; /* 5.1:1 en el extremo claro */
+  --brand-accent:#AEBDCB;
+  /* señal: piel y lunar, solo en contenido */
+  --skin:#95624F; --mole:#15191D; --mole-soft:#B9A08F; --slide:#E7EBEE; --slide-line:#46607A;
+  --display:"Nunito Sans","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Nunito Sans","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --mono:"Nunito","Nunito Sans","Avenir Next",system-ui,sans-serif; /* etiquetas, fechas y números */
+  --r:20px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161A; --surface:#1B2127; --sunken:#151A1F; --line:#2E3842;
+  --text:#E7ECF0; --muted:#A9B4BF; --link:#A9C0D6;
+  --solid:#E7ECF0; --on-solid:#12161A; --slide:#DDE3E8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161A; --surface:#1B2127; --sunken:#151A1F; --line:#2E3842;
+  --text:#E7ECF0; --muted:#A9B4BF; --link:#A9C0D6;
+  --solid:#E7ECF0; --on-solid:#12161A; --slide:#DDE3E8; color-scheme:dark}
+@media (prefers-contrast:more){:root{--muted:var(--text);--line:var(--text);--on-brand-2:#FFFFFF}}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.06;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h2{font-size:clamp(34px,5vw,52px)}
+h3{font-size:21px;letter-spacing:-.01em}
+p{margin:0}
+:focus-visible{outline:3px solid var(--link);outline-offset:3px;border-radius:8px}
+a{color:var(--link);text-underline-offset:3px}
+
+/* etiqueta clínica: el único uso de la mono */
+.label{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+.label::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor;flex:none}
+.lead{font-size:clamp(18px,2vw,20px);color:var(--muted);max-width:58ch;margin-top:16px}
+section{padding-block:clamp(64px,9vw,108px)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.head > div{min-width:0}
+.head h2{margin-top:12px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;gap:.5em;font-weight:600;font-size:16px;text-decoration:none;border-radius:999px;padding:0 22px}
+.btn.primary{background:var(--on-brand);color:#15191D}
+.btn.secondary{color:var(--on-brand);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6)}
+.btn:hover{filter:brightness(.94)}
+.btn:active,.showall:active,.seg button:active{transform:scale(.98)}
+
+/* ---------- PORTADA ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:var(--brand-a);color:var(--on-brand);padding-block:28px clamp(56px,9vw,104px)}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 30%;z-index:-2}
+/* velo para que el texto blanco tenga contraste sobre la foto */
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(21,25,29,.88) 0%,rgba(21,25,29,.62) 38%,rgba(21,25,29,.05) 66%)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.top img{width:min(290px,64vw);height:auto;display:block}
+.top nav{display:flex;gap:4px}
+.top nav a{color:var(--on-brand-2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 12px;border-radius:999px}
+.top nav a:hover{color:var(--on-brand);background:rgba(255,255,255,.08)}
+.hero-grid{margin-top:clamp(56px,8vw,110px)}
+.hero-copy{max-width:560px;min-width:0}
+.pills{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:28px}
+.pill{display:inline-flex;border-radius:999px;font-weight:700;padding:.3em .9em}
+.pill.black{background:#0E0F10;color:#FFFFFF;font-size:clamp(20px,2.4vw,25px)}
+.pill.white{background:#FFFFFF;color:#15191D;font-size:15px}
+.hero h1{font-size:clamp(46px,7vw,86px);letter-spacing:-.03em;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.hero h1 span{color:var(--brand-accent)}
+.hero .sub{margin-top:22px;font-size:clamp(18px,2vw,21px);max-width:32ch;color:var(--on-brand-2)}
+.hero .sub b{color:var(--on-brand)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+
+/* ---------- DÓNDE ME ATIENDO ---------- */
+.seg{display:inline-flex;background:var(--surface);border-radius:999px;padding:4px;gap:2px}
+.seg button{font:inherit;font-size:15px;font-weight:600;min-height:44px;border:0;background:transparent;color:var(--muted);padding:0 18px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--solid);color:var(--on-solid)}
+.list{margin-top:32px;display:grid;gap:10px}
+.row{background:var(--surface);border-radius:18px;display:grid;grid-template-columns:92px 1fr auto;gap:20px;align-items:center;padding:14px 18px}
+.date{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--sunken);border-radius:14px;padding:10px 4px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.date .d{font-size:30px;font-weight:800;line-height:1;letter-spacing:-.01em}
+.row.two .date .d{font-size:22px}
+.date .m{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.date .w{font-family:var(--body);font-size:13px;font-weight:600;color:var(--text);margin-top:2px}
+.info{min-width:0}
+.info .name{font-family:var(--display);font-weight:800;font-size:19px;line-height:1.22}
+.info .meta{font-size:15px;color:var(--muted);margin-top:4px}
+.info .meta span{display:inline}
+.info .meta span + span::before{content:" · "}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.status{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:6px 11px;white-space:nowrap;background:var(--sunken);color:var(--text)}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor}
+.status.soon::before,.status.today::before{background:currentColor}
+.status.today{background:var(--solid);color:var(--on-solid)}
+.status.done{color:var(--muted)}
+.status.done::before{border-style:dashed}
+.row.past .name,.row.past .date .d{color:var(--muted)}
+.map{display:inline-flex;align-items:center;min-height:44px;font-size:15px;font-weight:600;white-space:nowrap}
+.note{margin-top:20px;font-size:15px;color:var(--muted)}
+
+/* ---------- ABCDE ---------- */
+.abcde{background:var(--surface)}
+.abcde .intro{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.abcde .intro > div{min-width:0}
+.plate{width:100%;height:auto;display:block;border-radius:var(--r)}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:48px}
+.card{background:var(--sunken);border-radius:var(--r);padding:20px 18px 22px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card .letter{font-family:var(--display);font-size:60px;font-weight:800;line-height:.9}
+.card h3{font-size:19px}
+.card p{font-size:15px;color:var(--muted)}
+.card .slide{background:var(--slide);border-radius:14px;padding:10px 8px 8px;margin-block:6px 2px}
+.card svg{width:100%;height:auto;display:block}
+.card .cap{display:grid;grid-template-columns:1fr 1fr;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#4A5562;margin-top:4px}
+.card .cap b{font-weight:500;color:#15191D}
+.m-ok{fill:var(--mole-soft)} .m-bad{fill:var(--mole)} .m-skin{fill:var(--skin)} .m-rule{stroke:var(--slide-line)}
+.selfcheck{margin-top:56px;display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+.selfcheck > div,.selfcheck > ol{min-width:0}
+.selfcheck h3{font-size:clamp(26px,3vw,32px)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:var(--mono);font-weight:500;font-size:17px;width:40px;height:40px;border-radius:50%;background:var(--solid);color:var(--on-solid);display:grid;place-items:center}
+.steps b{display:block}
+.steps span{color:var(--muted);font-size:15px}
+.ugly{margin-top:20px;background:var(--sunken);border-radius:16px;padding:18px 20px;font-size:15px;color:var(--muted)}
+.ugly b{color:var(--text)}
+
+/* ---------- SORTEO ---------- */
+.sorteo{background:linear-gradient(160deg,var(--brand-a),var(--brand-b));color:var(--on-brand)}
+.sorteo .label{color:var(--on-brand-2)}
+.sorteo h2{margin-top:12px;text-align:center}
+.how{list-style:none;margin:36px auto 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;counter-reset:h;max-width:900px}
+.how li{counter-increment:h;display:flex;flex-direction:column;align-items:flex-start;gap:6px;background:rgba(255,255,255,.08);border-radius:18px;padding:16px;text-align:left;min-width:0}
+.how li::before{content:counter(h);width:34px;height:34px;border-radius:50%;background:#FFFFFF;color:#15191D;font-family:var(--mono);font-weight:800;font-size:16px;display:grid;place-items:center;margin-bottom:6px}
+.how b{font-size:17px;line-height:1.25}
+.how span{color:var(--on-brand-2);font-size:15px;line-height:1.4}
+.tagrow{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.copy{display:inline-flex;align-items:center;gap:0;min-height:48px;border:0;border-radius:999px;padding:4px;background:#FFFFFF;color:#15191D;font:inherit;cursor:pointer}
+.copy .at{font-family:var(--mono);font-weight:800;font-size:17px;padding:0 14px 0 16px}
+.copy .act{font-weight:700;font-size:15px;background:#15191D;color:#FFFFFF;border-radius:999px;padding:10px 16px}
+.copy:hover .act{background:#2A323A}
+.copy:active{transform:scale(.98)}
+.fine{font-size:14px;color:var(--on-brand-2);text-align:center}
+
+/* ---------- CÁNCER DE PIEL ---------- */
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:36px}
+.intro-grid > div{min-width:0}
+.types{display:grid;gap:10px;margin-top:28px}
+.type{background:var(--surface);border-radius:16px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline}
+.type i{width:11px;height:11px;border-radius:50%;background:var(--skin)}
+.type.mel i{background:var(--mole)}
+.type p{grid-column:2;font-size:15px;color:var(--muted)}
+.facts-list h3{margin-bottom:14px}
+.facts-list + .facts-list{margin-top:32px;padding-top:28px;border-top:1px solid var(--line)}
+.facts-list ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.facts-list li{position:relative;padding-left:24px}
+.facts-list li::before{content:"";position:absolute;left:3px;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--text)}
+
+/* ---------- DESPLEGABLES (divulgación progresiva) ---------- */
+.more{border-top:1px solid var(--line)}
+.more:last-of-type{border-bottom:1px solid var(--line)}
+.more summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;padding:8px 0;font-family:var(--display);font-weight:800;font-size:20px}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"";width:12px;height:12px;flex:none;border-right:2.5px solid var(--link);border-bottom:2.5px solid var(--link);transform:rotate(45deg) translate(-3px,-3px);transition:transform .2s ease}
+.more[open] summary::after{transform:rotate(-135deg)}
+.more .body{padding:0 0 22px;color:var(--muted);max-width:62ch}
+.more .body ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.more .body p + ul,.more .body p + p{margin-top:10px}
+.more .body b{color:var(--text)}
+.showall{margin-top:12px;font:inherit;font-weight:600;font-size:16px;min-height:48px;width:100%;border:1.5px dashed var(--line);background:transparent;color:var(--link);border-radius:18px;cursor:pointer}
+.showall:hover{border-color:var(--link)}
+.accordions{margin-top:28px;max-width:760px}
+
+/* ---------- PIE ---------- */
+footer{background:#0E0F10;color:#C9D3DD;padding-block:44px}
+.foot{display:flex;justify-content:space-between;align-items:flex-start;gap:20px 40px;flex-wrap:wrap;font-size:15px}
+.foot .tag{font-family:var(--display);font-weight:800;color:#FFFFFF;font-size:19px}
+.foot p{max-width:52ch}
+
+/* ---------- CENTRADO (pensado para celular) ---------- */
+.label{justify-content:center}
+#sedes .wrap > h2,#cancer .wrap > h2,.sorteo h2{text-align:center}
+.lead{text-align:center;margin-inline:auto}
+.abcde .intro > div{text-align:center}
+.accordions{margin-inline:auto}
+.note{text-align:center}
+.foot{flex-direction:column;align-items:center;text-align:center}
+
+/* ---------- ANCHOS ---------- */
+@media (max-width:980px){.cards{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:860px){
+  .abcde .intro,.intro-grid{grid-template-columns:1fr}
+  .top nav{display:none}
+  .top{justify-content:center}
+  .hero{padding-bottom:40px;--ph:min(116vw,500px)}
+  .hero-bg{height:var(--ph);object-position:80% 40%}
+  .hero::before{background:linear-gradient(180deg,rgba(21,25,29,.6) 0,rgba(21,25,29,0) 110px,rgba(21,25,29,0) calc(var(--ph) - 190px),var(--brand-a) var(--ph))}
+  .hero-grid{margin-top:calc(var(--ph) - 210px)}
+  .hero-copy{max-width:none}
+  .hero-copy{text-align:center}
+  .pills{align-items:center}
+  .hero .sub{margin-inline:auto}
+  .ctas{justify-content:center}
+  .plate{max-width:520px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .how{gap:8px}
+  .how li{padding:12px 10px;gap:4px}
+  .how li::before{width:28px;height:28px;font-size:14px;margin-bottom:4px}
+  .how b{font-size:15px}
+  .how span{font-size:13px}
+  .cards{grid-template-columns:1fr;gap:8px;margin-top:28px}
+  .card{display:grid;grid-template-columns:44px 1fr 132px;grid-template-areas:"l t s" "l p s";column-gap:12px;row-gap:2px;align-items:center;padding:14px}
+  .card .letter{grid-area:l;font-size:44px;align-self:center}
+  .card h3{grid-area:t;align-self:end;font-size:18px}
+  .card p{grid-area:p;align-self:start;font-size:14px}
+  .card .slide{grid-area:s;margin:0;padding:6px 4px 4px}
+  .card .cap{font-size:11px;letter-spacing:0}
+  .plate{display:none}
+  .row{grid-template-columns:78px 1fr;gap:14px;padding:14px}
+  .side{grid-column:1 / -1;flex-direction:row;justify-content:space-between;align-items:center}
+  .date .d{font-size:26px}
+}
+</style>
+<style>:root{padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<header class="hero">
+  <img class="hero-bg" src="img/hero-hombro.jpg" width="1080" height="875" alt="Mujer de perfil que se toca el hombro, donde tiene un lunar irregular">
+  <div class="wrap">
+    <div class="top">
+      <img src="img/lockup.png" width="900" height="229" alt="Sociedad Paraguaya de Dermatología · Noviembre a Motas, XXIV Campaña de Prevención del Cáncer de Piel 2026">
+      <nav aria-label="Secciones">
+        <a href="#sedes">Dónde atenderme</a>
+        <a href="#abcde">ABCDE</a>
+        <a href="#sorteo">Sorteo</a>
+        <a href="#cancer">Cáncer de piel</a>
+      </nav>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="pills">
+          <span class="pill black">Tenemos que hablar.</span>
+          <span class="pill white">#EsHoraDeMirarTuPiel</span>
+        </div>
+        <h1>Es hora de mirar <span>tu piel.</span></h1>
+        <p class="sub">Control de lunares <b>gratis</b> con dermatólogos, del 5 al 27 de noviembre.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#sedes">Ver dónde atenderme</a>
+          <a class="btn secondary" href="#abcde">Revisar mis lunares</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="sedes">
+    <div class="wrap">
+      <p class="label">Control gratuito</p>
+      <h2 style="margin-top:12px">Dónde me reviso</h2>
+      <div class="list" id="list" aria-live="polite"></div>
+      <button type="button" class="showall" id="showall" aria-expanded="false">Ver las 10 jornadas</button>
+      <p class="note">Horarios por confirmar.</p>
+    </div>
+  </section>
+
+  <section id="abcde" class="abcde">
+    <div class="wrap">
+      <div class="intro">
+        <div>
+          <p class="label">Autoexamen</p>
+          <h2 style="margin-top:12px">El ABCDE de tus lunares</h2>
+          <p class="lead">Si un lunar tiene alguna de estas señales, consultá.</p>
+        </div>
+        <img class="plate" src="img/lamina.jpg" width="1040" height="880" alt="Lámina con cientos de puntos iguales y uno solo irregular, marcado con un anillo y una escala de 6 milímetros">
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span class="letter">A</span><h3>Asimetría</h3>
+          <div class="slide"><svg viewBox="0 0 200 92" role="img" aria-label="Lunar simétrico al lado de uno asimétrico">
+            <circle class="m-ok" cx="50" cy="44" r="24"/>
+            <path class="m-bad" d="M150 18c22 0 30 12 26 28-3 13-10 22-24 24-11 2-16-6-20-14-4-9-10-15-6-25 3-8 13-13 24-13z"/>
+            <line class="m-rule" x1="150" y1="10" x2="150" y2="80" stroke-width="2" stroke-dasharray="4 4"/>
+          </svg>
+          <div class="cap"><span>Habitual</span><b>Consultar</b></div></div>
+          <p>Las dos mitades no coinciden.</p>
+        </article>
+        <article class="card">
+          <span class="letter">B</span><h3>Bordes</h3>
+          <div class="slide"><svg viewBox="0 0 200 92" role="img" aria-label="Lunar de borde liso al lado de uno de borde irregular">
+            <circle class="m-ok" cx="50" cy="44" r="24"/>
+            <path class="m-bad" d="M150 17l7 7 10-2 1 10 9 6-6 8 4 10-10 3-3 10-10-4-8 7-6-9-10-1 2-10-7-8 8-6-1-10 10 1z"/>
+          </svg>
+          <div class="cap"><span>Habitual</span><b>Consultar</b></div></div>
+          <p>Borde irregular o difuso.</p>
+        </article>
+        <article class="card">
+          <span class="letter">C</span><h3>Color</h3>
+          <div class="slide"><svg viewBox="0 0 200 92" role="img" aria-label="Lunar de un solo color al lado de uno de varios tonos">
+            <circle class="m-ok" cx="50" cy="44" r="24"/>
+            <circle class="m-skin" cx="150" cy="44" r="27"/>
+            <path d="M136 30c9-6 22-3 25 7 3 9-5 17-14 16-10-1-18-15-11-23z" fill="#15191D"/>
+            <circle cx="162" cy="58" r="7" fill="#4C2E22"/>
+            <circle cx="140" cy="58" r="4" fill="#C9A08C"/>
+          </svg>
+          <div class="cap"><span>Habitual</span><b>Consultar</b></div></div>
+          <p>Varios tonos en un mismo lunar.</p>
+        </article>
+        <article class="card">
+          <span class="letter">D</span><h3>Diámetro</h3>
+          <div class="slide"><svg viewBox="0 0 200 92" role="img" aria-label="Lunar de menos de 6 milímetros al lado de uno de más de 6 milímetros">
+            <circle class="m-ok" cx="50" cy="40" r="13"/>
+            <circle class="m-bad" cx="150" cy="36" r="27"/>
+            <g class="m-rule" stroke-width="2"><line x1="37" y1="78" x2="63" y2="78"/><line x1="37" y1="72" x2="37" y2="84"/><line x1="63" y1="72" x2="63" y2="84"/><line x1="137" y1="78" x2="163" y2="78"/><line x1="137" y1="72" x2="137" y2="84"/><line x1="163" y1="72" x2="163" y2="84"/></g>
+          </svg>
+          <div class="cap"><span>−6 mm</span><b>+6 mm</b></div></div>
+          <p>Más grande que la goma de un lápiz.</p>
+        </article>
+        <article class="card">
+          <span class="letter">E</span><h3>Evolución</h3>
+          <div class="slide"><svg viewBox="0 0 200 92" role="img" aria-label="Lunar que crece y cambia con el tiempo">
+            <circle class="m-ok" cx="40" cy="44" r="12"/>
+            <path class="m-rule" d="M66 44h30" stroke-width="2.5"/><path class="m-rule" d="M90 37l8 7-8 7" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="m-bad" d="M148 18c18-2 32 10 30 26-2 15-14 26-29 25-14-1-24-12-24-25 0-14 9-25 23-26z"/>
+          </svg>
+          <div class="cap"><span>Antes</span><b>Ahora</b></div></div>
+          <p>Cambia, pica o sangra.</p>
+        </article>
+      </div>
+
+      <div class="accordions">
+        <details class="more">
+          <summary>Cómo revisarte en 5 minutos</summary>
+          <div class="body">
+            <p>Una vez al mes, con buena luz y un espejo de mano: cara y orejas, cuero cabelludo, brazos y uñas, pecho y espalda, piernas y pies.</p>
+            <p><b>El patito feo:</b> si un lunar es distinto a todos los demás, consultá aunque no cumpla el ABCDE.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="sorteo" class="sorteo">
+    <div class="wrap">
+      <p class="label">Sorteo</p>
+      <h2>Mirate en el espejo. Y participá.</h2>
+      <ol class="how">
+        <li><b>Sacate una foto</b><span>Frente al espejo, con el sticker.</span></li>
+        <li><b>Subila a tus historias</b><span>Etiquetando a la SPD.</span></li>
+        <li><b>Participás</b><span>Con tu cuenta en modo público.</span></li>
+      </ol>
+      <div class="tagrow">
+        <button type="button" class="copy" id="copy-handle" aria-describedby="copy-hint"><span class="at" id="handle">@soparder</span><span class="act" id="copy-label">Copiar</span></button>
+        <p class="fine" id="copy-hint">Premio y bases y condiciones a confirmar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cancer">
+    <div class="wrap">
+      <p class="label">Cáncer de piel</p>
+      <h2 style="margin-top:12px">Detectado a tiempo, se cura.</h2>
+      <div class="accordions">
+        <details class="more">
+          <summary>Qué es</summary>
+          <div class="body">
+            <p>Un cáncer que aparece en la piel, donde lo podés ver. Muchas veces empieza como un lunar que cambia o una mancha nueva.</p>
+            <ul>
+              <li><b>Carcinoma basocelular:</b> el más frecuente, crece lento.</li>
+              <li><b>Carcinoma espinocelular:</b> una costra o herida que no cicatriza.</li>
+              <li><b>Melanoma:</b> menos frecuente y más agresivo. Es el que detecta el ABCDE.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="more">
+          <summary>Quién tiene más riesgo</summary>
+          <div class="body"><ul>
+            <li>Piel clara o que se quema fácil.</li>
+            <li>Muchos lunares, o lunares grandes o irregulares.</li>
+            <li>Quemaduras de sol, sobre todo en la infancia.</li>
+            <li>Familiares con cáncer de piel.</li>
+            <li>Mucho tiempo al sol o camas solares.</li>
+          </ul></div>
+        </details>
+        <details class="more">
+          <summary>Cómo cuidarte</summary>
+          <div class="body"><ul>
+            <li>Evitá el sol de 10:00 a 16:00.</li>
+            <li>Protector FPS 30 o más, cada 2 horas.</li>
+            <li>Sombrero, lentes y ropa que cubra.</li>
+            <li>Nada de camas solares.</li>
+          </ul></div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p class="tag">#EsHoraDeMirarTuPiel</p>
+    <p>Noviembre a Motas, XXIV Campaña de Prevención del Cáncer de Piel de la Sociedad Paraguaya de Dermatología. Esta información no reemplaza la consulta con un dermatólogo.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const SEDES = [
+    {dates:["2026-11-05","2026-11-06"], name:"Hospital Nacional de Itauguá", city:"Itauguá", lead:"Dra. Diana Nunes y Dra. Libia Martínez"},
+    {dates:["2026-11-07"], name:"Hospital General de Itapúa", city:"Encarnación", lead:"Dra. Clara González"},
+    {dates:["2026-11-11"], name:"Universidad Nacional de Asunción, Filial Santa Rosa del Aguaray", city:"Santa Rosa del Aguaray", lead:"Dr. José Duarte"},
+    {dates:["2026-11-11"], name:"Hospital Distrital de San Ignacio", city:"San Ignacio, Misiones", lead:"Dra. Laura Fornerón"},
+    {dates:["2026-11-14"], name:"Hospital Universitario UCP, Universidad Central del Paraguay", city:"Ciudad del Este", lead:"Dra. Gabriela Mafei"},
+    {dates:["2026-11-16"], name:"Hospital de Clínicas", city:"San Lorenzo", lead:"Dra. Stefania Montanaro"},
+    {dates:["2026-11-17"], name:"Hospital General Pediátrico Niños de Acosta Ñu", city:"", lead:"Dra. Olga Gutiérrez"},
+    {dates:["2026-11-18"], name:"Instituto de Medicina Tropical", city:"", lead:"Dra. Laura Wiegert"},
+    {dates:["2026-11-25"], name:"Hospital Central del IPS", city:"", lead:"Dra. Vania Diez Pérez"},
+    {dates:["2026-11-27"], name:"Universidad María Auxiliadora, Sede Loma Pytã", city:"", lead:"Dra. Regina Espínola"}
+  ];
+  const DOW = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
+  const today = new Date(); today.setHours(0,0,0,0);
+  const DAY = 86400000;
+
+  function status(s){
+    const first = parse(s.dates[0]), last = parse(s.dates[s.dates.length-1]);
+    if (s.dates.some(d => parse(d).getTime() === today.getTime())) return ["today","Hoy"];
+    if (last < today) return ["done","Finalizada"];
+    const diff = Math.round((first - today) / DAY);
+    if (diff <= 7) return ["soon", diff === 1 ? "Mañana" : "En " + diff + " días"];
+    return ["next","Próxima"];
+  }
+  const esc = t => { const d = document.createElement("div"); d.textContent = t; return d.innerHTML; };
+
+  let showAll = false;
+  const LIMIT = 4;
+
+  function render(){
+    const list = document.getElementById("list");
+    const all = SEDES.map(s => ({s, st: status(s)}));
+    const upcoming = all.filter(r => r.st[0] !== "done");
+    const rows = showAll ? all : upcoming.slice(0, LIMIT);
+    const btn = document.getElementById("showall");
+    btn.hidden = !showAll && all.length <= rows.length;
+    btn.textContent = showAll ? "Ver solo las próximas" : "Ver las " + all.length + " jornadas";
+    btn.setAttribute("aria-expanded", showAll);
+    if (!rows.length){
+      list.innerHTML = '<div class="row"><div class="info" style="grid-column:1/-1"><div class="name">Las jornadas de este año ya terminaron.</div><div class="meta">Podés seguir consultando con tu dermatólogo durante todo el año.</div></div></div>';
+      return;
+    }
+    list.innerHTML = rows.map(({s, st}) => {
+      const ds = s.dates.map(parse);
+      const q = encodeURIComponent(s.name + (s.city ? ", " + s.city : "") + ", Paraguay");
+      return `<article class="row${ds.length > 1 ? " two" : ""}${st[0] === "done" ? " past" : ""}">
+        <div class="date"><span class="d">${ds.map(d => d.getDate()).join(" y ")}</span><span class="m">nov</span><span class="w">${ds.map(d => DOW[d.getDay()]).join(" y ")}</span></div>
+        <div class="info"><div class="name">${esc(s.name)}</div>
+          ${s.city ? `<div class="meta">${esc(s.city)}</div>` : ""}</div>
+        <div class="side"><span class="status ${st[0]}">${st[1]}</span>
+          <a class="map" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">Ver en el mapa</a></div>
+      </article>`;
+    }).join("");
+  }
+
+  document.getElementById("showall").addEventListener("click", () => {
+    showAll = !showAll; render();
+    if (!showAll) document.getElementById("sedes").scrollIntoView({block:"start"});
+  });
+  render();
+
+  const copyBtn = document.getElementById("copy-handle"), copyLabel = document.getElementById("copy-label");
+  copyBtn.addEventListener("click", () => {
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents(document.getElementById("handle"));
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      copyLabel.textContent = "Seleccionado";
+    };
+    try { navigator.clipboard.writeText("@soparder").then(() => { copyLabel.textContent = "Copiado"; }, fallback); } catch(e) { fallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
